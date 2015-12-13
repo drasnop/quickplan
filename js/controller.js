@@ -4,7 +4,10 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    $scope.sorted = false;
 
    $scope.getTop = function(item) {
-      return model.items.indexOf(item) * 72 + 'px';
+      if ($scope.sorted)
+         return model.items.indexOfSorted(item) * 72 + 'px';
+      else
+         return model.items.indexOf(item) * 72 + 'px';
    }
 
    $scope.getPollHeight = function() {
@@ -21,10 +24,6 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
    $scope.toggleSort = function() {
       $scope.sorted = !$scope.sorted;
-      if ($scope.sorted)
-         model.items.sortByScore();
-      else
-         model.items.sortById();
    }
 }]);
 

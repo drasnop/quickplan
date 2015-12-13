@@ -42,16 +42,13 @@ model.items = items.map(function(item) {
    return new Item(item.id, item.name, item.yes, item.no);
 })
 
-// sort items by increasing id (= input order)
-model.items.sortById = function() {
-   this.sort(function(a, b) {
-      return a.id - b.id;
-   });
-}
-
-// sort items by decreasing score (= best at the top)
-model.items.sortByScore = function() {
-   this.sort(function(a, b) {
-      return b.score() - a.score();
-   });
+// sad workaround because of the way Angular handles reordering of a list
+// find index of item is the array was sorted by decreasing score (= best at the top)
+model.items.indexOfSorted = function(item) {
+   var index = 0;
+   for (var i = 0; i < this.length; ++i) {
+      if (this[i].score() > item.score())
+         index++;
+   }
+   return index;
 }
