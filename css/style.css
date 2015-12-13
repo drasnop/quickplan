@@ -1,15 +1,21 @@
 /* general */
 
-.offset-left {
-   position: absolute;
-   left: 72px;
+body {
+   background-color: #eee;
 }
 
 .phone-container {
-   margin: 0px auto;
-   max-width: 412px;
    width: 100%;
+   max-width: 412px;
+   margin: 0px auto;
+   overflow: hidden;
    position: relative;
+   background-color: white;
+}
+
+.offset-left {
+   position: absolute;
+   left: 72px;
 }
 
 .float-right {
