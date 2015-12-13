@@ -14,8 +14,9 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    $scope.toggleSort = function() {
       $scope.sorted = !$scope.sorted;
       if ($scope.sorted)
-         model.items = model.items.sort();
-
+         model.items.sortByScore();
+      else
+         model.items.sortById();
    }
 }]);
 

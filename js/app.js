@@ -8,22 +8,26 @@ var model = {
 
 // input data
 var items = [{
-   'name': 'La Tour d\'Argent',
-   'yes': 3,
-   'no': 1
+   'id': 0,
+   'name': 'Le Pot de Fer',
+   'yes': 1,
+   'no': 2
 }, {
+   'id': 1,
    'name': 'Les Deux Magots',
    'yes': 2,
    'no': 4
 }, {
-   'name': 'Le Pot de Fer',
-   'yes': 1,
-   'no': 2
+   'id': 2,
+   'name': 'La Tour d\'Argent',
+   'yes': 3,
+   'no': 1
 }]
 
 // Item objects
-var Item = function(name, yes, no) {
+var Item = function(id, name, yes, no) {
    return {
+      'id': id,
       'name': name,
       'yes': yes,
       'no': no,
@@ -35,5 +39,19 @@ var Item = function(name, yes, no) {
 
 // populate model.items with the input data
 model.items = items.map(function(item) {
-   return new Item(item.name, item.yes, item.no);
+   return new Item(item.id, item.name, item.yes, item.no);
 })
+
+// sort items by increasing id (= input order)
+model.items.sortById = function() {
+   this.sort(function(a, b) {
+      return a.id - b.id;
+   });
+}
+
+// sort items by decreasing score (= best at the top)
+model.items.sortByScore = function() {
+   this.sort(function(a, b) {
+      return b.score() - a.score();
+   });
+}
