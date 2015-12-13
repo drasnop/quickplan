@@ -54,7 +54,7 @@ header {
 }
 
 .sub-header .title {
-   font-size: 16px;
+   font-size: 14px;
 }
 
 .sub-header i {
@@ -64,6 +64,20 @@ header {
 
 /* poll */
 
-.poll-item {
+#poll .item {
    height: 72px;
+   line-height: 72px;
+   font-size: 16px;
+}
+
+#poll .item .bar {
+   position: absolute;
+   width: 100%;
+   overflow: hidden;
+   white-space: nowrap;
+}
+
+#poll .item .bar span {
+   margin-left: 72px;
+   margin-right: 16px;
 }
