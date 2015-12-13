@@ -81,3 +81,7 @@ header {
    margin-left: 72px;
    margin-right: 16px;
 }
+
+.md-inactive {
+   opacity: .3;
+}

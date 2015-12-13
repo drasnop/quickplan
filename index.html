@@ -13,7 +13,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body ng-app="QuickPlan">
+<body ng-app="QuickPlan" ng-controller="pollCtrl">
    <div class="phone-container">
       <header class="containter-fluid z-depth-1">
          <div class="main-header blue-grey">
@@ -24,9 +24,10 @@
          <div class="sub-header blue-grey darken-2">
             <i class="material-icons tappable">location_on</i>
             <span class="title offset-left">Choose location</span>
+            <i class="material-icons tappable float-right" ng-class="{'md-inactive': !sorted}" ng-click="toggleSort()">sort</i>
          </div>
       </header>
-      <section id="poll" ng-controller="pollCtrl">
+      <section id="poll">
          <div class="item" ng-repeat="item in model.items">
             <div class="bar red"><span class="white-text">{{item.name}}</span></div>
             <div class="bar white" ng-style="{width: getWhiteWidth(item)}"><span>{{item.name}}</span></div>
@@ -38,6 +39,7 @@
    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+   <script src="js/app.js"></script>
    <script src="js/controller.js"></script>
 </body>
 
