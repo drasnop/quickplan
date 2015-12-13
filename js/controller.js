@@ -15,11 +15,11 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    }
 
    $scope.getGreenWidth = function(item) {
-      return (item.yes / model.nPeople) * 100 + '%';
+      return (item.yes() / model.nPeople) * 100 + '%';
    }
 
    $scope.getWhiteWidth = function(item) {
-      return ((model.nPeople - item.no) / model.nPeople) * 100 + '%';
+      return ((model.nPeople - item.no()) / model.nPeople) * 100 + '%';
    }
 
    $scope.toggleSort = function() {
