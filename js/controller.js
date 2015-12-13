@@ -3,12 +3,20 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    $scope.model = window.model;
    $scope.sorted = false;
 
+   $scope.getTop = function(item) {
+      return model.items.indexOf(item) * 72 + 'px';
+   }
+
+   $scope.getPollHeight = function() {
+      return (model.items.length + 1) * 72 + 'px';
+   }
+
    $scope.getGreenWidth = function(item) {
-      return (item.yes / model.nPeople) * 100 + "%";
+      return (item.yes / model.nPeople) * 100 + '%';
    }
 
    $scope.getWhiteWidth = function(item) {
-      return ((model.nPeople - item.no) / model.nPeople) * 100 + "%";
+      return ((model.nPeople - item.no) / model.nPeople) * 100 + '%';
    }
 
    $scope.toggleSort = function() {

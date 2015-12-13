@@ -64,10 +64,17 @@ header {
 
 /* poll */
 
+#poll {
+   position: relative;
+}
+
 #poll .item {
    height: 72px;
    line-height: 72px;
    font-size: 16px;
+   transition: top 1s ease;
+   position: absolute;
+   width: 100%;
 }
 
 #poll .item .bar {
