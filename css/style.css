@@ -1,3 +1,28 @@
+/* general */
+
+.offset-left {
+   position: absolute;
+   left: 72px;
+}
+
+.phone-container {
+   margin: 0px auto;
+   max-width: 412px;
+   width: 100%;
+   position: relative;
+}
+
+.float-right {
+   float: right;
+}
+
+.tappable {
+   cursor: pointer;
+}
+
+
+/* header & sub-header*/
+
 header {
    color: #FFF;
 }
@@ -7,13 +32,32 @@ header {
    line-height: 56px;
 }
 
-.sub-header {
-   height: 56px;
-   line-height: 56px;
+.main-header .title {
+   position: absolute;
+   left: 72px;
+   font-size: 18px;
 }
 
-.phone-container {
-   margin: 0px auto;
-   max-width: 412px;
-   width: 100%;
+.main-header i {
+   padding: 14px;
+}
+
+.sub-header {
+   height: 48px;
+   line-height: 48px;
+}
+
+.sub-header .title {
+   font-size: 16px;
+}
+
+.sub-header i {
+   padding: 12px 16px;
+}
+
+
+/* poll */
+
+.poll-item {
+   height: 72px;
 }
