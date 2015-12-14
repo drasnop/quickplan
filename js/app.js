@@ -60,7 +60,9 @@ model.items = items.map(function(item) {
 model.items.indexOfSorted = function(item) {
    var index = 0;
    for (var i = 0; i < this.length; ++i) {
-      if (this[i].score() > item.score())
+      if ((this[i].score() > item.score()) ||
+         (this[i].score() == item.score() && this[i].yes() > item.yes()) ||
+         (this[i].score() == item.score() && this[i].yes() == item.yes() && this[i].name > item.name))
          index++;
    }
    return index;
