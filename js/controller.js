@@ -42,23 +42,30 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       }, 800)
    }
 
-   $scope.dragRight = function(event) {
+   $scope.drag = function(event) {
       var item = model.items[$(event.target).attr('data')];
-      console.log(item.name, event.deltaX);
+      console.log(item.name, event.direction, event.deltaX);
 
       if (item.vote === 0) {
          item.delta_yes = event.deltaX;
+         // no transition, allow the bar to jump to the finger's most recent position
          $(event.target).siblings('.bar.indicator.green').addClass('notransition');
       }
    }
 
-   $scope.dragRight_end = function(event) {
+   $scope.dragend = function(event) {
       var item = model.items[$(event.target).attr('data')];
-      console.log(item.name, "end");
-      item.vote = 1;
-      $(event.target).siblings('.bar.indicator').removeClass('notransition');
+      console.log(item.name, "end", event.direction, event.deltaX);
+
+      if (event.deltaX > 20) {
+         item.vote = 1;
+      }
+
+      //
       item.delta_yes = 0;
-      setTimeout(function() {}, 10);
+
+      // allow smooth transition back to normal width
+      $(event.target).siblings('.bar.indicator').removeClass('notransition');
    }
 
 

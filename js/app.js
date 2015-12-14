@@ -3,7 +3,9 @@ var app = angular.module('QuickPlan', ['angular-gestures']);
 app.config(function(hammerDefaultOptsProvider) {
    hammerDefaultOptsProvider.set({
       'recognizers': [
-         [Hammer.Pan, {}]
+         [Hammer.Pan, {
+            direction: Hammer.DIRECTION_HORIZONTAL
+         }]
       ]
    });
 });
