@@ -45,15 +45,20 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    $scope.dragRight = function(event) {
       var item = model.items[$(event.target).attr('data')];
       console.log(item.name, event.deltaX);
-      if (item.vote === 0)
+
+      if (item.vote === 0) {
          item.delta_yes = event.deltaX;
+         $(event.target).siblings('.bar.indicator.green').addClass('notransition');
+      }
    }
 
    $scope.dragRight_end = function(event) {
       var item = model.items[$(event.target).attr('data')];
       console.log(item.name, "end");
-      item.delta_yes = 0;
       item.vote = 1;
+      $(event.target).siblings('.bar.indicator').removeClass('notransition');
+      item.delta_yes = 0;
+      setTimeout(function() {}, 10);
    }
 
 
