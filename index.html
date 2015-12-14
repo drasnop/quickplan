@@ -28,7 +28,7 @@
          </div>
       </header>
       <section id="poll" ng-style="{height: getPollHeight()}">
-         <div class="item" id="{{item.id()}}" ng-repeat="item in model.items" ng-style="{top: getTop(item)}" ng-swipe-right="upvote()">
+         <div class="item" id="{{item.id()}}" ng-repeat="item in model.items" ng-style="{top: getTop(item)}" hm-drag-right="upvote($event)">
             <div class="bar indicator green lighten-4" ng-class="{voted:item.vote==1}" ng-style="{width: getGreenWidth(item)}"></div>
             <div class="bar indicator red lighten-4" ng-class="{voted:item.vote==-1}" ng-style="{width: getRedWidth(item)}"></div>
             <div class="bar white"></div>
@@ -44,7 +44,8 @@
    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-touch.js"></script>
+   <script src="js/hammer.min.js"></script>
+   <script src="js/angular-gestures.min.js"></script>
    <script src="js/app.js"></script>
    <script src="js/controller.js"></script>
 </body>

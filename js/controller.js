@@ -42,8 +42,8 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       }, 800)
    }
 
-   $scope.upvote = function(event) {
-      console.log(event);
+   $scope.upvote = function($event) {
+      console.log($event);
    }
 }]);
 

@@ -1,4 +1,14 @@
-var app = angular.module('QuickPlan', ['ngTouch']);
+var app = angular.module('QuickPlan', ['angular-gestures']);
+
+app.config(function(hammerDefaultOptsProvider) {
+   hammerDefaultOptsProvider.set({
+      'recognizers': [
+         [Hammer.Pan, {
+            time: 250
+         }]
+      ]
+   });
+});
 
 // a global object holding the current state
 var model = {
