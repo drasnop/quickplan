@@ -14,12 +14,26 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       return (model.items.length + 1) * parameters.itemHeight - 1 + 'px';
    }
 
-   $scope.getGreenWidth = function(item) {
-      return (item.yes() / model.nPeople) * $('#poll').width() + item.delta_yes;
+   function getPollWidth() {
+      return $('#poll').width();
    }
 
+   // prevent green bar from overlapping on red bar
+   $scope.getGreenWidth = function(item) {
+      return Math.min(baseGreenWidth(item), getPollWidth() - baseRedWidth(item));
+   }
+
+   function baseGreenWidth(item) {
+      return (item.yes() / model.nPeople) * getPollWidth() + item.delta_yes;
+   }
+
+   // prevent red bar from overlapping on green bar
    $scope.getRedWidth = function(item) {
-      return (item.no() / model.nPeople) * $('#poll').width();
+      return Math.min(baseRedWidth(item), getPollWidth() - baseRedWidth(item));
+   }
+
+   function baseRedWidth(item) {
+      return (item.no() / model.nPeople) * getPollWidth();
    }
 
    $scope.toggleSort = function() {
