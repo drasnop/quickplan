@@ -5,9 +5,9 @@
    <meta charset="utf-8">
    <title>QuickPlan prototype</title>
    <!--Import Google Icon Font-->
-   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    <!--Import materialize.css-->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
    <link rel="stylesheet" href="css/style.css">
    <!--Let browser know website is optimized for mobile-->
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,11 +28,12 @@
          </div>
       </header>
       <section id="poll" ng-style="{height: getPollHeight()}">
-         <div class="item" id="{{item.id()}}" ng-repeat="item in model.items" ng-style="{top: getTop(item)}">
+         <div class="item" id="{{item.id()}}" ng-repeat="item in model.items" ng-style="{top: getTop(item)}" ng-swipe-right="upvote()">
             <div class="bar indicator green lighten-4" ng-class="{voted:item.vote==1}" ng-style="{width: getGreenWidth(item)}"></div>
             <div class="bar indicator red lighten-4" ng-class="{voted:item.vote==-1}" ng-style="{width: getRedWidth(item)}"></div>
-            <div class="bar main"></div>
+            <div class="bar white"></div>
             <div class="bar text">{{item.name}}</div>
+            <div class="bar swippable"></div>
          </div>
          <div class="bar main placeholder">
             <div class="bar text">Add item</div>
@@ -41,8 +42,9 @@
    </div>
    <!-- Load scripts -->
    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-touch.js"></script>
    <script src="js/app.js"></script>
    <script src="js/controller.js"></script>
 </body>

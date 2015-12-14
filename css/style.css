@@ -121,12 +121,8 @@ header {
    border-color: #E57373;
 }
 
-#poll .bar.main {
+#poll .bar.white {
    margin-top: 1px;
-}
-
-#poll .item .bar.main {
-   background-color: white;
 }
 
 #poll .item .text,
@@ -146,4 +142,9 @@ header {
    bottom: 1px;
    border-top: 1px solid #E0E0E0;
    border-bottom: 1px solid #E0E0E0;
+}
+
+#poll .item .bar.swippable {
+   z-index: 2;
+   cursor: pointer;
 }

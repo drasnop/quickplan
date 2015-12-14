@@ -1,4 +1,4 @@
-var app = angular.module('QuickPlan', []);
+var app = angular.module('QuickPlan', ['ngTouch']);
 
 // a global object holding the current state
 var model = {

@@ -41,6 +41,10 @@ app.controller('pollCtrl', ['$scope', function($scope) {
          $('.item').removeClass('raised');
       }, 800)
    }
+
+   $scope.upvote = function(event) {
+      console.log(event);
+   }
 }]);
 
 // tinkering function: update angular view after manually changing parameters
