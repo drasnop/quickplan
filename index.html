@@ -28,7 +28,7 @@
          </div>
       </header>
       <section id="poll" ng-style="{height: getPollHeight()}">
-         <div class="item" id="{{item.id}}" ng-repeat="item in model.items" ng-style="{top: getTop(item)}">
+         <div class="item" id="{{item.id()}}" ng-repeat="item in model.items" ng-style="{top: getTop(item)}">
             <div class="bar indicator green lighten-4" ng-class="{voted:item.vote==1}" ng-style="{width: getGreenWidth(item)}"></div>
             <div class="bar indicator red lighten-4" ng-class="{voted:item.vote==-1}" ng-style="{width: getRedWidth(item)}"></div>
             <div class="bar main"></div>

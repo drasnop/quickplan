@@ -8,31 +8,26 @@ var model = {
 
 // input data
 var items = [{
-   'id': 0,
    'name': 'Le Pot de Fer',
    'other_yes': 2,
    'other_no': 2
 }, {
-   'id': 1,
    'name': 'La Tour d\'Argent',
    'other_yes': 5,
    'other_no': 1
 }, {
-   'id': 2,
    'name': 'L\' Amateur',
    'other_yes': 0,
    'other_no': 4
 }, {
-   'id': 3,
    'name': 'Les Deux Magots',
    'other_yes': 2,
    'other_no': 5
 }]
 
 // Item objects
-var Item = function(id, name, other_yes, other_no) {
+var Item = function(name, other_yes, other_no) {
    return {
-      'id': id,
       'name': name,
       'other_yes': other_yes,
       'other_no': other_no,
@@ -47,12 +42,15 @@ var Item = function(id, name, other_yes, other_no) {
       'score': function() {
          return this.yes() - this.no();
       },
+      'id': function() {
+         return model.items.indexOf(this);
+      }
    };
 }
 
 // populate model.items with the input data
 model.items = items.map(function(item) {
-   return new Item(item.id, item.name, item.other_yes, item.other_no);
+   return new Item(item.name, item.other_yes, item.other_no);
 })
 
 // sad workaround because of the way Angular handles reordering of a list

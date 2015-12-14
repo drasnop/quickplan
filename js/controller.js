@@ -28,11 +28,11 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       // hackish: manually add shadows on elements moving up
       model.items.forEach(function(item) {
          if ($scope.sorted) {
-            if (model.items.indexOfSorted(item) < item.id)
-               $('#' + item.id).addClass('raised');
+            if (model.items.indexOfSorted(item) < item.id())
+               $('#' + item.id()).addClass('raised');
          } else {
-            if (model.items.indexOfSorted(item) > item.id)
-               $('#' + item.id).addClass('raised');
+            if (model.items.indexOfSorted(item) > item.id())
+               $('#' + item.id()).addClass('raised');
          }
       });
 
