@@ -52,11 +52,14 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       var item = model.items[$(event.target).attr('data')];
       console.log(item.name, event.direction, event.deltaX, event);
 
-      if (item.vote === 0) {
-         item.delta_yes = event.deltaX;
-         // no transition, allow the bar to jump to the finger's most recent position
-         $(event.target).siblings('.bar.indicator.green').addClass('notransition');
+      item.delta_yes = event.deltaX;
+
+      if (event.deltaX > parameters.dragThreshold) {
+         item.temp_vote = 1;
       }
+
+      // no transition, allow the bar to jump to the finger's most recent position
+      $(event.target).siblings('.bar.indicator.green').addClass('notransition');
    }
 
    $scope.dragend = function(event) {
@@ -66,9 +69,9 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       var item = model.items[$(event.target).attr('data')];
       console.log(item.name, "end", event.direction, event.deltaX, event);
 
-      if (event.deltaX > parameters.dragThreshold) {
-         item.vote = 1;
-      }
+      // convert a temporary vote into an actual one
+      if (item.temp_vote !== 0)
+         item.vote = item.temp_vote;
 
       // reset bars to their normal length
       item.delta_yes = 0;

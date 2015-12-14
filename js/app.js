@@ -20,7 +20,7 @@ var model = {
 // a global object holding static parameters
 var parameters = {
    'itemHeight': 73,
-   'dragThreshold': 50,
+   'dragThreshold': 100,
    'reDragDelay': 200
 }
 
@@ -50,6 +50,7 @@ var Item = function(name, other_yes, other_no) {
       'other_yes': other_yes,
       'other_no': other_no,
       'vote': 0,
+      'temp_vote': 0,
       'delta_yes': 0,
 
       'yes': function() {
