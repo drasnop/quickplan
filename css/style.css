@@ -98,6 +98,8 @@ header {
 #poll .bar.indicator {
    z-index: 1;
    box-sizing: content-box;
+   /*transition: width 0.5s linear;
+   width: 0;*/
 }
 
 #poll .bar.green {

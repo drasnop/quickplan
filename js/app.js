@@ -4,7 +4,7 @@ app.config(function(hammerDefaultOptsProvider) {
    hammerDefaultOptsProvider.set({
       'recognizers': [
          [Hammer.Pan, {
-            time: 250
+            time: 10
          }]
       ]
    });
@@ -42,6 +42,7 @@ var Item = function(name, other_yes, other_no) {
       'other_yes': other_yes,
       'other_no': other_no,
       'vote': 0,
+      'delta_yes': 0,
 
       'yes': function() {
          return this.other_yes + (this.vote == 1 ? 1 : 0);

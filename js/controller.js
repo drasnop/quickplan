@@ -15,11 +15,11 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    }
 
    $scope.getGreenWidth = function(item) {
-      return (item.yes() / model.nPeople) * 100 + '%';
+      return (item.yes() / model.nPeople) * $('#poll').width() + item.delta_yes;
    }
 
    $scope.getRedWidth = function(item) {
-      return (item.no() / model.nPeople) * 100 + '%';
+      return (item.no() / model.nPeople) * $('#poll').width();
    }
 
    $scope.toggleSort = function() {
@@ -42,9 +42,21 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       }, 800)
    }
 
-   $scope.upvote = function($event) {
-      console.log($event);
+   $scope.dragRight = function(event) {
+      var item = model.items[$(event.target).attr('data')];
+      console.log(item.name, event.deltaX);
+      if (item.vote === 0)
+         item.delta_yes = event.deltaX;
    }
+
+   $scope.dragRight_end = function(event) {
+      var item = model.items[$(event.target).attr('data')];
+      console.log(item.name, "end");
+      item.delta_yes = 0;
+      item.vote = 1;
+   }
+
+
 }]);
 
 // tinkering function: update angular view after manually changing parameters
