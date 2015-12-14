@@ -64,12 +64,18 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
       // retrieve target item
       var item = model.items[$(event.target).attr('data')];
-      console.log(item.name, event.direction, event.deltaX, event);
+      console.log(item.name, event.direction, event.deltaX);
 
+      // resize indicator bar to follow finger
       item.delta_yes = event.deltaX;
+
+      if (item.temp_vote == null)
+         item.temp_vote = item.vote;
 
       if (event.deltaX > parameters.dragThreshold) {
          item.temp_vote = 1;
+      } else if (event.deltaX < -parameters.dragThreshold) {
+         item.temp_vote = 0;
       }
 
       // no transition, allow the bar to jump to the finger's most recent position
@@ -84,8 +90,10 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       console.log(item.name, "end", event.direction, event.deltaX, event);
 
       // convert a temporary vote into an actual one
-      if (item.temp_vote !== 0)
+      if (item.temp_vote !== 0) {
          item.vote = item.temp_vote;
+         item.temp_vote = null;
+      }
 
       // reset bars to their normal length
       item.delta_yes = 0;
@@ -93,8 +101,6 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       // allow smooth transition back to normal width
       $(event.target).siblings('.bar.indicator').removeClass('notransition');
    }
-
-
 }]);
 
 // tinkering function: update angular view after manually changing parameters
