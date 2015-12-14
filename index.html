@@ -28,10 +28,10 @@
          </div>
       </header>
       <section id="poll" ng-style="{height: getPollHeight()}">
-         <div class="item" ng-repeat="item in model.items" ng-style="{top: getTop(item)}">
-            <div class="bar green lighten-4" ng-class="{'lighten-2':item.vote==1}" ng-style="{width: getGreenWidth(item)}"></div>
+         <div class="item" id="{{item.id}}" ng-repeat="item in model.items" ng-style="{top: getTop(item)}">
             <div class="bar red lighten-4" ng-class="{'lighten-2':item.vote==-1}" ng-style="{width: getRedWidth(item)}"></div>
-            <div class="bar"><span>{{item.name}}</span></div>
+            <div class="bar green lighten-4" ng-class="{'lighten-2':item.vote==1}" ng-style="{width: getGreenWidth(item)}"></div>
+            <div class="bar main"><span>{{item.name}}</span></div>
          </div>
       </section>
    </div>

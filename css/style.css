@@ -74,9 +74,15 @@ header {
    height: 72px;
    line-height: 72px;
    font-size: 16px;
-   transition: top 1s ease;
    position: absolute;
    width: 100%;
+   background-color: white;
+   transition: top 0.8s ease, box-shadow 0.25s ease 0s;
+}
+
+#poll .item.raised {
+   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16), 0px 2px 10px 0px rgba(0, 0, 0, 0.12);
+   z-index: 1;
 }
 
 #poll .item .bar {
@@ -84,10 +90,15 @@ header {
    width: 100%;
    overflow: hidden;
    white-space: nowrap;
+   height: inherit;
 }
 
 #poll .item .bar.red {
    right: 0;
+}
+
+#poll .item .bar.main {
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 #poll .item .bar span {

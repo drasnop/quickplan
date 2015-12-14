@@ -24,6 +24,22 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
    $scope.toggleSort = function() {
       $scope.sorted = !$scope.sorted;
+
+      // hackish: manually add shadows on elements moving up
+      model.items.forEach(function(item) {
+         if ($scope.sorted) {
+            if (model.items.indexOfSorted(item) < item.id)
+               $('#' + item.id).addClass('raised');
+         } else {
+            if (model.items.indexOfSorted(item) > item.id)
+               $('#' + item.id).addClass('raised');
+         }
+      });
+
+      // remove shadows at the end of the animation
+      setTimeout(function() {
+         $('.item').removeClass('raised');
+      }, 800)
    }
 }]);
 
