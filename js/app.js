@@ -52,6 +52,7 @@ var Item = function(name, other_yes, other_no) {
       'vote': 0,
       'temp_vote': null,
       'delta_yes': 0,
+      'delta_no': 0,
 
       'yes': function() {
          return this.other_yes + (this.vote == 1 ? 1 : 0);

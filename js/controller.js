@@ -20,7 +20,8 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
    // prevent green bar from overlapping on red bar
    $scope.getGreenWidth = function(item) {
-      return Math.min(baseGreenWidth(item), getPollWidth() - baseRedWidth(item));
+      //return Math.min(baseGreenWidth(item), getPollWidth() - baseRedWidth(item));
+      return baseGreenWidth(item);
    }
 
    function baseGreenWidth(item) {
@@ -29,11 +30,12 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
    // prevent red bar from overlapping on green bar
    $scope.getRedWidth = function(item) {
-      return Math.min(baseRedWidth(item), getPollWidth() - baseRedWidth(item));
+      //return Math.min(baseRedWidth(item), getPollWidth() - baseRedWidth(item));
+      return baseRedWidth(item);
    }
 
    function baseRedWidth(item) {
-      return (item.no() / model.nPeople) * getPollWidth();
+      return (item.no() / model.nPeople) * getPollWidth() + item.delta_no;
    }
 
    $scope.toggleSort = function() {
@@ -66,28 +68,35 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       var item = model.items[$(event.target).attr('data')];
       console.log(item.name, event.direction, event.deltaX);
 
-      // resize indicator bar to follow finger
-      item.delta_yes = event.deltaX;
-
       // to keep bar color consistent, start with temp_vote = current vote
       if (item.temp_vote == null)
          item.temp_vote = item.vote;
 
+      // resize indicator bar to follow finger
+      item.delta_yes = event.deltaX;
+      item.delta_no = -event.deltaX;
+
       if (item.vote === 0) {
-         if (event.deltaX > parameters.dragThreshold) {
+         if (event.deltaX > parameters.dragThreshold)
             item.temp_vote = 1;
-         } else {
+         else if (event.deltaX < -parameters.dragThreshold)
+            item.temp_vote = -1;
+         else
             item.temp_vote = 0;
-         }
       } else if (item.vote == 1) {
          if (event.deltaX < -parameters.dragThreshold)
             item.temp_vote = 0;
          else
             item.temp_vote = 1;
+      } else if (item.vote == -1) {
+         if (event.deltaX > parameters.dragThreshold)
+            item.temp_vote = 0;
+         else
+            item.temp_vote = -1;
       }
 
       // no transition, allow the bar to jump to the finger's most recent position
-      $(event.target).siblings('.bar.indicator.green').addClass('notransition');
+      $(event.target).siblings('.bar.indicator').addClass('notransition');
    }
 
    $scope.dragend = function(event) {
@@ -103,6 +112,7 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
       // reset bars to their normal length
       item.delta_yes = 0;
+      item.delta_no = 0;
 
       // allow smooth transition back to normal width
       $(event.target).siblings('.bar.indicator').removeClass('notransition');
