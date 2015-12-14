@@ -86,6 +86,10 @@ header {
    white-space: nowrap;
 }
 
+#poll .item .bar.red {
+   right: 0;
+}
+
 #poll .item .bar span {
    margin-left: 72px;
    margin-right: 16px;

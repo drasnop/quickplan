@@ -18,8 +18,8 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       return (item.yes() / model.nPeople) * 100 + '%';
    }
 
-   $scope.getWhiteWidth = function(item) {
-      return ((model.nPeople - item.no()) / model.nPeople) * 100 + '%';
+   $scope.getRedWidth = function(item) {
+      return (item.no() / model.nPeople) * 100 + '%';
    }
 
    $scope.toggleSort = function() {
