@@ -5,13 +5,13 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
    $scope.getTop = function(item) {
       if ($scope.sorted)
-         return model.items.indexOfSorted(item) * 72 + 'px';
+         return model.items.indexOfSorted(item) * 73 - 1 + 'px';
       else
-         return model.items.indexOf(item) * 72 + 'px';
+         return model.items.indexOf(item) * 73 - 1 + 'px';
    }
 
    $scope.getPollHeight = function() {
-      return (model.items.length + 1) * 72 + 'px';
+      return (model.items.length + 1) * 73 - 1 + 'px';
    }
 
    $scope.getGreenWidth = function(item) {
