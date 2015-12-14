@@ -10,18 +10,23 @@ var model = {
 var items = [{
    'id': 0,
    'name': 'Le Pot de Fer',
-   'other_yes': 1,
+   'other_yes': 2,
    'other_no': 2
 }, {
    'id': 1,
-   'name': 'Les Deux Magots',
-   'other_yes': 2,
+   'name': 'La Tour d\'Argent',
+   'other_yes': 5,
+   'other_no': 1
+}, {
+   'id': 2,
+   'name': 'L\' Amateur',
+   'other_yes': 0,
    'other_no': 4
 }, {
    'id': 2,
-   'name': 'La Tour d\'Argent',
-   'other_yes': 3,
-   'other_no': 1
+   'name': 'Les Deux Magots',
+   'other_yes': 2,
+   'other_no': 5
 }]
 
 // Item objects
