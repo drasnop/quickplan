@@ -18,7 +18,7 @@
       <header class="containter-fluid z-depth-1">
          <div class="main-header blue-grey">
             <i class="material-icons tappable">arrow_back</i>
-            <span class="title offset-left">New Event</span>
+            <span class="title offset-left">Big fat dinner!</span>
             <i class="material-icons tappable float-right">expand_less</i>
          </div>
          <div class="sub-header blue-grey darken-2">
@@ -29,8 +29,8 @@
       </header>
       <section id="poll" ng-style="{height: getPollHeight()}">
          <div class="item" id="{{item.id}}" ng-repeat="item in model.items" ng-style="{top: getTop(item)}">
-            <div class="bar indicator red lighten-4" ng-class="{voted:item.vote==-1}" ng-style="{width: getRedWidth(item)}"></div>
             <div class="bar indicator green lighten-4" ng-class="{voted:item.vote==1}" ng-style="{width: getGreenWidth(item)}"></div>
+            <div class="bar indicator red lighten-4" ng-class="{voted:item.vote==-1}" ng-style="{width: getRedWidth(item)}"></div>
             <div class="bar main"></div>
             <div class="bar text">{{item.name}}</div>
          </div>

@@ -23,7 +23,7 @@ var items = [{
    'other_yes': 0,
    'other_no': 4
 }, {
-   'id': 2,
+   'id': 3,
    'name': 'Les Deux Magots',
    'other_yes': 2,
    'other_no': 5
