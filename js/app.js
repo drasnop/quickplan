@@ -13,7 +13,15 @@ app.config(function(hammerDefaultOptsProvider) {
 // a global object holding the current state
 var model = {
    'nPeople': 10,
-   'items': []
+   'items': [],
+   'dragEndTimeStamp': 0
+}
+
+// a global object holding static parameters
+var parameters = {
+   'itemHeight': 73,
+   'dragThreshold': 50,
+   'reDragDelay': 200
 }
 
 // input data
@@ -35,7 +43,7 @@ var items = [{
    'other_no': 5
 }]
 
-// Item objects
+// Item object
 var Item = function(name, other_yes, other_no) {
    return {
       'name': name,

@@ -5,13 +5,13 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
    $scope.getTop = function(item) {
       if ($scope.sorted)
-         return model.items.indexOfSorted(item) * 73 - 1 + 'px';
+         return model.items.indexOfSorted(item) * parameters.itemHeight - 1 + 'px';
       else
-         return model.items.indexOf(item) * 73 - 1 + 'px';
+         return model.items.indexOf(item) * parameters.itemHeight - 1 + 'px';
    }
 
    $scope.getPollHeight = function() {
-      return (model.items.length + 1) * 73 - 1 + 'px';
+      return (model.items.length + 1) * parameters.itemHeight - 1 + 'px';
    }
 
    $scope.getGreenWidth = function(item) {
@@ -43,8 +43,14 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    }
 
    $scope.drag = function(event) {
+
+      // workaround: sometimes a last drag event is fired just after the dragend event
+      if (event.timeStamp - model.dragEndTimeStamp < parameters.reDragDelay)
+         return;
+
+      // retrieve target item
       var item = model.items[$(event.target).attr('data')];
-      console.log(item.name, event.direction, event.deltaX);
+      console.log(item.name, event.direction, event.deltaX, event);
 
       if (item.vote === 0) {
          item.delta_yes = event.deltaX;
@@ -54,14 +60,17 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    }
 
    $scope.dragend = function(event) {
-      var item = model.items[$(event.target).attr('data')];
-      console.log(item.name, "end", event.direction, event.deltaX);
+      model.dragEndTimeStamp = event.timeStamp;
 
-      if (event.deltaX > 20) {
+      // retrieve target item
+      var item = model.items[$(event.target).attr('data')];
+      console.log(item.name, "end", event.direction, event.deltaX, event);
+
+      if (event.deltaX > parameters.dragThreshold) {
          item.vote = 1;
       }
 
-      //
+      // reset bars to their normal length
       item.delta_yes = 0;
 
       // allow smooth transition back to normal width
