@@ -5,7 +5,8 @@ app.config(function(hammerDefaultOptsProvider) {
       'recognizers': [
          [Hammer.Pan, {
             direction: Hammer.DIRECTION_HORIZONTAL
-         }]
+         }],
+         [Hammer.Tap, {}]
       ]
    });
 });

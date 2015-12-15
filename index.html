@@ -52,7 +52,8 @@
             <div class="bar indicator red lighten-4" ng-class="{voted: (item.vote==-1  && item.temp_vote == null || item.temp_vote==-1)}" ng-style="{width: getRedWidth(item)}"></div>
             <div class="bar white"></div>
             <div class="bar text noselect">{{item.name}}</div>
-            <div class="bar swippable" hm-drag="drag($event, item)" hm-dragend="dragend($event, item)" ng-click="expand(item)"></div>
+            <div class="bar swippable" hm-drag="drag($event, item)" hm-dragend="dragend($event, item)" hm-tap="expand(item)"></div>
+            <div class="bar details" ng-style="{opacity: (model.expanded == item? 1 : 0)}">This screen will show information about the restaurant (map, directions, reviews), as well as the detail of who voted for and against it.</div>
          </div>
          <div class="bar main placeholder">
             <div class="bar text">Add item</div>
