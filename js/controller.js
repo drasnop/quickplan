@@ -4,10 +4,19 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    $scope.sorted = false;
 
    $scope.getTop = function(item) {
+      if (model.expanded == item)
+         return '-1px';
       if ($scope.sorted)
          return model.items.indexOfSorted(item) * parameters.itemHeight - 1 + 'px';
       else
          return model.items.indexOf(item) * parameters.itemHeight - 1 + 'px';
+   }
+
+   $scope.getHeight = function(item) {
+      if (model.expanded == item)
+         return $scope.getPollHeight();
+      else
+         return parameters.itemHeight + 1 + 'px';
    }
 
    $scope.getPollHeight = function() {
@@ -118,11 +127,16 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    }
 
    $scope.expand = function(item) {
-      console.log(item.name);
+      console.log('Showing details for', item.name);
       if (model.expanded == item)
          model.expanded = null;
       else
          model.expanded = item;
+   }
+
+   $scope.back = function() {
+      if (model.expanded != null)
+         model.expanded = null;
    }
 }]);
 
