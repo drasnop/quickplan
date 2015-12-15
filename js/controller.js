@@ -66,7 +66,6 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
       // retrieve target item
       var item = model.items[$(event.target).attr('data')];
-      console.log(item.name, event.direction, event.deltaX);
 
       // to keep bar color consistent, start with temp_vote = current vote
       if (item.temp_vote == null)
@@ -76,23 +75,31 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       item.delta_yes = event.deltaX;
       item.delta_no = -event.deltaX;
 
-      if (item.vote === 0) {
-         if (event.deltaX > parameters.dragThreshold)
-            item.temp_vote = 1;
-         else if (event.deltaX < -parameters.dragThreshold)
-            item.temp_vote = -1;
-         else
-            item.temp_vote = 0;
-      } else if (item.vote == 1) {
-         if (event.deltaX < -parameters.dragThreshold)
-            item.temp_vote = 0;
-         else
-            item.temp_vote = 1;
-      } else if (item.vote == -1) {
-         if (event.deltaX > parameters.dragThreshold)
-            item.temp_vote = 0;
-         else
-            item.temp_vote = -1;
+      switch (item.vote) {
+         case 0:
+            if (event.deltaX > parameters.dragThreshold)
+               item.temp_vote = 1;
+            else if (event.deltaX < -parameters.dragThreshold)
+               item.temp_vote = -1;
+            else
+               item.temp_vote = 0;
+            break;
+         case 1:
+            if (event.deltaX < -2 * parameters.dragThreshold)
+               item.temp_vote = -1;
+            else if (event.deltaX < -parameters.dragThreshold)
+               item.temp_vote = 0;
+            else
+               item.temp_vote = 1;
+            break;
+         case -1:
+            if (event.deltaX > 2 * parameters.dragThreshold)
+               item.temp_vote = 1;
+            else if (event.deltaX > parameters.dragThreshold)
+               item.temp_vote = 0;
+            else
+               item.temp_vote = -1;
+            break;
       }
 
       // no transition, allow the bar to jump to the finger's most recent position
@@ -104,7 +111,6 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
       // retrieve target item
       var item = model.items[$(event.target).attr('data')];
-      console.log(item.name, "end", event.direction, event.deltaX, event);
 
       // convert a temporary vote into an actual one
       item.vote = item.temp_vote;
