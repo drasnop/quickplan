@@ -73,7 +73,6 @@ header {
 
 #poll {
    position: relative;
-   overflow: hidden;
 }
 
 #poll .item {

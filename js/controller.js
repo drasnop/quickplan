@@ -14,7 +14,7 @@ app.controller('pollCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
    $scope.getHeight = function(item) {
       if (model.expanded == item)
-         return $scope.getPollHeight();
+         return $('.phone-container').height() - $('header').height();
       else
          return parameters.itemHeight + 1 + 'px';
    }
