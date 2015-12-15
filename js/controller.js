@@ -118,7 +118,11 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    }
 
    $scope.expand = function(item) {
-      console.log(item);
+      console.log(item.name);
+      if (model.expanded == item)
+         model.expanded = null;
+      else
+         model.expanded = item;
    }
 }]);
 

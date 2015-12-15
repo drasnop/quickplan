@@ -14,7 +14,8 @@ app.config(function(hammerDefaultOptsProvider) {
 var model = {
    'nPeople': 10,
    'items': [],
-   'dragEndTimeStamp': 0
+   'dragEndTimeStamp': 0,
+   'expanded': null
 }
 
 // a global object holding static parameters
