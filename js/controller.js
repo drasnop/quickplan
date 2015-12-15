@@ -58,14 +58,10 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       }, 800)
    }
 
-   $scope.drag = function(event) {
-
+   $scope.drag = function(event, item) {
       // workaround: sometimes a last drag event is fired just after the dragend event
       if (event.timeStamp - model.dragEndTimeStamp < parameters.reDragDelay)
          return;
-
-      // retrieve target item
-      var item = model.items[$(event.target).attr('data')];
 
       // to keep bar color consistent, start with temp_vote = current vote
       if (item.temp_vote == null)
@@ -106,11 +102,8 @@ app.controller('pollCtrl', ['$scope', function($scope) {
       $(event.target).siblings('.bar.indicator').addClass('notransition');
    }
 
-   $scope.dragend = function(event) {
+   $scope.dragend = function(event, item) {
       model.dragEndTimeStamp = event.timeStamp;
-
-      // retrieve target item
-      var item = model.items[$(event.target).attr('data')];
 
       // convert a temporary vote into an actual one
       item.vote = item.temp_vote;
@@ -122,6 +115,10 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
       // allow smooth transition back to normal width
       $(event.target).siblings('.bar.indicator').removeClass('notransition');
+   }
+
+   $scope.expand = function(item) {
+      console.log(item);
    }
 }]);
 

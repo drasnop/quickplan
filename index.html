@@ -52,7 +52,7 @@
             <div class="bar indicator red lighten-4" ng-class="{voted: (item.vote==-1  && item.temp_vote == null || item.temp_vote==-1)}" ng-style="{width: getRedWidth(item)}"></div>
             <div class="bar white"></div>
             <div class="bar text noselect">{{item.name}}</div>
-            <div class="bar swippable" data="{{item.id()}}" hm-drag="drag($event)" hm-dragend="dragend($event)"></div>
+            <div class="bar swippable" hm-drag="drag($event, item)" hm-dragend="dragend($event, item)" ng-click="expand(item)"></div>
          </div>
          <div class="bar main placeholder">
             <div class="bar text">Add item</div>
