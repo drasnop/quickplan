@@ -127,10 +127,10 @@ app.controller('pollCtrl', ['$scope', function($scope) {
    }
 
    $scope.expand = function(item) {
-      console.log('Showing details for', item.name);
-      if (model.expanded == item) {
+      if (model.expanded == item)
          contract();
-      } else {
+      else if (model.expanded == null) {
+         console.log('Showing details for', item.name);
          model.expanded = item;
          $('#' + item.id()).addClass('expanded');
       }
