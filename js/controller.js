@@ -128,15 +128,24 @@ app.controller('pollCtrl', ['$scope', function($scope) {
 
    $scope.expand = function(item) {
       console.log('Showing details for', item.name);
-      if (model.expanded == item)
-         model.expanded = null;
-      else
+      if (model.expanded == item) {
+         contract();
+      } else {
          model.expanded = item;
+         $('#' + item.id()).addClass('expanded');
+      }
    }
 
    $scope.back = function() {
       if (model.expanded != null)
-         model.expanded = null;
+         contract();
+   }
+
+   function contract() {
+      model.expanded = null;
+      setTimeout(function() {
+         $('.item').removeClass('expanded');
+      }, 800);
    }
 }]);
 
