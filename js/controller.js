@@ -1,5 +1,5 @@
 // poll controller
-app.controller('pollCtrl', ['$scope', function($scope) {
+app.controller('pollCtrl', ['$scope', '$timeout', function($scope, $timeout) {
    $scope.model = window.model;
    $scope.sorted = false;
 
@@ -131,8 +131,10 @@ app.controller('pollCtrl', ['$scope', function($scope) {
          contract();
       else if (model.expanded == null) {
          console.log('Showing details for', item.name);
-         model.expanded = item;
          $('#' + item.id()).addClass('expanded');
+         $timeout(function() {
+            model.expanded = item;
+         })
       }
    }
 
